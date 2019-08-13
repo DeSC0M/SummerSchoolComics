@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,47 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ComicBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVO-Xj-K3S">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="e_scooters" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-zO-szt">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerX" secondItem="gVO-Xj-K3S" secondAttribute="centerX" id="6z4-sR-ZhK"/>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerY" secondItem="gVO-Xj-K3S" secondAttribute="centerY" id="F1S-ho-dU7"/>
+                                    <constraint firstAttribute="bottom" secondItem="5fW-zO-szt" secondAttribute="bottom" id="P6l-9C-Ymv"/>
+                                    <constraint firstAttribute="trailing" secondItem="5fW-zO-szt" secondAttribute="trailing" id="VuI-yi-gHf"/>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="leading" secondItem="gVO-Xj-K3S" secondAttribute="leading" id="Y4O-OB-xNW"/>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="top" secondItem="gVO-Xj-K3S" secondAttribute="top" id="ZpY-iu-gco"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gVO-Xj-K3S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0z9-j8-CsJ"/>
+                            <constraint firstItem="gVO-Xj-K3S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4mR-Um-9y3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gVO-Xj-K3S" secondAttribute="trailing" id="8Sp-nP-t0w"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gVO-Xj-K3S" secondAttribute="bottom" id="aTA-Wp-QRG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="comicsImage" destination="5fW-zO-szt" id="ZZq-89-Tm7"/>
+                        <outlet property="scrollImageUIScroll" destination="gVO-Xj-K3S" id="UKC-bu-bvb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="e_scooters" width="550" height="475"/>
+    </resources>
 </document>

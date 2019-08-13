@@ -24,7 +24,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     func configureScrollAndImageView() {
         comicsImage.contentMode = .scaleAspectFit
-//        comicsImage.image = UIImage(named: "e_scooters")
         loadData()
         
         scrollImageUIScroll.delegate = self

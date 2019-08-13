@@ -17,6 +17,7 @@
 		060BDEBE230343300085A2D6 /* BaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEBD230343300085A2D6 /* BaseServices.swift */; };
 		060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC0230344080085A2D6 /* NetworkConst.swift */; };
 		060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC2230346A70085A2D6 /* UIImageView.swift */; };
+		060BDEC623034C8A0085A2D6 /* ShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC523034C8A0085A2D6 /* ShakeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		060BDEBD230343300085A2D6 /* BaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServices.swift; sourceTree = "<group>"; };
 		060BDEC0230344080085A2D6 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
 		060BDEC2230346A70085A2D6 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		060BDEC523034C8A0085A2D6 /* ShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				060BDEBC230343050085A2D6 /* Services */,
 				060BDEA42303368B0085A2D6 /* ComicsViewController.swift */,
+				060BDEC523034C8A0085A2D6 /* ShakeView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				060BDEBE230343300085A2D6 /* BaseServices.swift in Sources */,
 				060BDEA52303368B0085A2D6 /* ComicsViewController.swift in Sources */,
 				060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */,
+				060BDEC623034C8A0085A2D6 /* ShakeView.swift in Sources */,
 				060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */,
 				060BDEBB230342820085A2D6 /* ComicsEntry.swift in Sources */,
 				060BDEA32303368B0085A2D6 /* AppDelegate.swift in Sources */,

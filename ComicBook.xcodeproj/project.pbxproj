@@ -54,14 +54,46 @@
 		060BDEA12303368B0085A2D6 /* ComicBook */ = {
 			isa = PBXGroup;
 			children = (
-				060BDEA22303368B0085A2D6 /* AppDelegate.swift */,
-				060BDEA42303368B0085A2D6 /* ViewController.swift */,
+				060BDEB6230338EC0085A2D6 /* Controller */,
+				060BDEB5230338E50085A2D6 /* View */,
+				060BDEB4230338DF0085A2D6 /* Model */,
+				060BDEB7230339100085A2D6 /* ConfigureFile */,
+			);
+			path = ComicBook;
+			sourceTree = "<group>";
+		};
+		060BDEB4230338DF0085A2D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		060BDEB5230338E50085A2D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				060BDEA62303368B0085A2D6 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		060BDEB6230338EC0085A2D6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				060BDEA42303368B0085A2D6 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		060BDEB7230339100085A2D6 /* ConfigureFile */ = {
+			isa = PBXGroup;
+			children = (
+				060BDEA22303368B0085A2D6 /* AppDelegate.swift */,
 				060BDEA92303368C0085A2D6 /* Assets.xcassets */,
 				060BDEAB2303368C0085A2D6 /* LaunchScreen.storyboard */,
 				060BDEAE2303368C0085A2D6 /* Info.plist */,
 			);
-			path = ComicBook;
+			path = ConfigureFile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

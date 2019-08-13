@@ -14,6 +14,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollImageUIScroll: UIScrollView!
     @IBOutlet weak var comicsImage: UIImageView!
     
+    var transcription: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,7 +24,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     func configureScrollAndImageView() {
         comicsImage.contentMode = .scaleAspectFit
-        comicsImage.image = UIImage(named: "e_scooters")
+//        comicsImage.image = UIImage(named: "e_scooters")
+        loadData()
         
         scrollImageUIScroll.delegate = self
         scrollImageUIScroll.minimumZoomScale = 1.0
@@ -33,8 +36,19 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         return comicsImage
     }
     
+    //устанавливаем нужный цвет в статус баре
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func loadData() {
+        let comics = BaseServices()
+        comics.getPhotos(onComplited: { (comics) in
+            self.comicsImage.loadImage(by: comics.img)
+            self.transcription = comics.transcript
+        }, onError:  { (error) in
+            print("Error with loading data: \(error)")
+        })
     }
 }
 

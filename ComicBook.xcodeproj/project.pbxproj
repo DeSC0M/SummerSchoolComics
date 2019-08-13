@@ -13,6 +13,10 @@
 		060BDEAA2303368C0085A2D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 060BDEA92303368C0085A2D6 /* Assets.xcassets */; };
 		060BDEAD2303368C0085A2D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060BDEAB2303368C0085A2D6 /* LaunchScreen.storyboard */; };
 		060BDEB923033BA80085A2D6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060BDEB823033BA80085A2D6 /* Default-568h@2x.png */; };
+		060BDEBB230342820085A2D6 /* ComicsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEBA230342820085A2D6 /* ComicsEntry.swift */; };
+		060BDEBE230343300085A2D6 /* BaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEBD230343300085A2D6 /* BaseServices.swift */; };
+		060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC0230344080085A2D6 /* NetworkConst.swift */; };
+		060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC2230346A70085A2D6 /* UIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		060BDEAC2303368C0085A2D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		060BDEAE2303368C0085A2D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		060BDEB823033BA80085A2D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		060BDEBA230342820085A2D6 /* ComicsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsEntry.swift; sourceTree = "<group>"; };
+		060BDEBD230343300085A2D6 /* BaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServices.swift; sourceTree = "<group>"; };
+		060BDEC0230344080085A2D6 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
+		060BDEC2230346A70085A2D6 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +66,11 @@
 		060BDEA12303368B0085A2D6 /* ComicBook */ = {
 			isa = PBXGroup;
 			children = (
+				060BDEC4230346CC0085A2D6 /* Extension */,
 				060BDEB6230338EC0085A2D6 /* Controller */,
 				060BDEB5230338E50085A2D6 /* View */,
 				060BDEB4230338DF0085A2D6 /* Model */,
+				060BDEBF230343CF0085A2D6 /* Resources */,
 				060BDEB7230339100085A2D6 /* ConfigureFile */,
 			);
 			path = ComicBook;
@@ -69,6 +79,7 @@
 		060BDEB4230338DF0085A2D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				060BDEBA230342820085A2D6 /* ComicsEntry.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -84,6 +95,7 @@
 		060BDEB6230338EC0085A2D6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				060BDEBC230343050085A2D6 /* Services */,
 				060BDEA42303368B0085A2D6 /* ComicsViewController.swift */,
 			);
 			path = Controller;
@@ -93,10 +105,34 @@
 			isa = PBXGroup;
 			children = (
 				060BDEA22303368B0085A2D6 /* AppDelegate.swift */,
-				060BDEA92303368C0085A2D6 /* Assets.xcassets */,
 				060BDEAB2303368C0085A2D6 /* LaunchScreen.storyboard */,
 			);
 			path = ConfigureFile;
+			sourceTree = "<group>";
+		};
+		060BDEBC230343050085A2D6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				060BDEBD230343300085A2D6 /* BaseServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		060BDEBF230343CF0085A2D6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				060BDEA92303368C0085A2D6 /* Assets.xcassets */,
+				060BDEC0230344080085A2D6 /* NetworkConst.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		060BDEC4230346CC0085A2D6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				060BDEC2230346A70085A2D6 /* UIImageView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,7 +207,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				060BDEBE230343300085A2D6 /* BaseServices.swift in Sources */,
 				060BDEA52303368B0085A2D6 /* ComicsViewController.swift in Sources */,
+				060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */,
+				060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */,
+				060BDEBB230342820085A2D6 /* ComicsEntry.swift in Sources */,
 				060BDEA32303368B0085A2D6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

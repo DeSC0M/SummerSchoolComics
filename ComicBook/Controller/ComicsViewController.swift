@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     var transcription: String?
     
+    let sinthes = AVSpeechSynthesizer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,7 +63,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func sintezButton(_ sender: Any) {
         let utterfance = AVSpeechUtterance(string: transcription ?? "")
-        let sinthes = AVSpeechSynthesizer()
         sinthes.speak(utterfance)
     }
     
@@ -70,6 +71,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         if sender.state == .ended {
             loadData()
         }
+    }
+    
+    @IBAction func stopButton(_ sender: Any) {
+        sinthes.stopSpeaking(at: .immediate)
     }
 }
 

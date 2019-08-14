@@ -55,6 +55,7 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gVO-Xj-K3S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0z9-j8-CsJ"/>
                             <constraint firstItem="gVO-Xj-K3S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4mR-Um-9y3"/>
@@ -67,6 +68,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outlet property="comicsImage" destination="5fW-zO-szt" id="BV5-Br-Aaf"/>
+                            <outletCollection property="gestureRecognizers" destination="jo4-hG-4nl" appends="YES" id="vEl-d5-QA6"/>
                         </connections>
                     </view>
                     <connections>
@@ -75,6 +77,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="jo4-hG-4nl">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="rightSwype:" destination="BYZ-38-t0r" id="xCp-AB-mtg"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
         </scene>
     </scenes>

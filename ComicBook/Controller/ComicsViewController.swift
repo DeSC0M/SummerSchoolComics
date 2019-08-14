@@ -8,9 +8,9 @@
 //
 //* Экран со случайным комиксом на весь экран +
 //* Возможность скроллить его и менять зум +
-//* При свайпе враво/влево – следующий/предыдущий
+//* При свайпе враво/влево – следующий/предыдущий +/-
 //* При встряхивании можно смотреть случайный комикс +
-//* Чтение комикса с помощью синтезатора речи
+//* Чтение комикса с помощью синтезатора речи +
 //* Можно поделиться комиксом
 
 import UIKit
@@ -63,6 +63,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let utterfance = AVSpeechUtterance(string: transcription ?? "")
         let sinthes = AVSpeechSynthesizer()
         sinthes.speak(utterfance)
+    }
+    
+    
+    @IBAction func rightSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == .ended {
+            loadData()
+        }
     }
 }
 

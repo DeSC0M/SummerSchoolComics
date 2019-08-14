@@ -26,6 +26,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     let sinthes = AVSpeechSynthesizer()
     
+    var arrayOfComics = [ComicsEntry]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -54,7 +56,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         sinthes.stopSpeaking(at: .immediate)
         let comics = BaseServices()
         comics.getPhotos(onComplited: { (comics) in
-            self.comicsImage.loadImage(by: comics.img) //выбивает ошибку когда трясу
+            self.arrayOfComics.append(comics)//добавление элементтов в массив
+            DispatchQueue.main.async {
+                self.comicsImage.loadImage(by: comics.img) //выбивает ошибку при встряхивании
+            }
             self.transcription = comics.transcript
         }, onError:  { (error) in
             print("Error with loading data: \(error)")
@@ -84,10 +89,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
         
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        
-//        activityController.completionWithItemsHandler = { (nil, completed, _, error) in
-//
-//        }
         
         present(activityController, animated: true)
     }

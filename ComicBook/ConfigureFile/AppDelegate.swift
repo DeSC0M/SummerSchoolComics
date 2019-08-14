@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        setupCache()
         return true
     }
 
@@ -41,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    private func setupCache() {
+        let cache = URLCache.shared
+        cache.diskCapacity = 1024 * 1024 * 50
+        cache.memoryCapacity = 1024 * 1024 * 10
+    }
 }
 

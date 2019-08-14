@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,35 +17,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVO-Xj-K3S">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-zi-T7V">
+                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-zO-szt">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-zi-T7V">
-                                        <rect key="frame" x="0.0" y="778" width="414" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFI-1Y-KKT">
-                                                <rect key="frame" x="31" y="0.0" width="90" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Transcrintion"/>
-                                                <connections>
-                                                    <action selector="sintezButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcS-Xr-sP0"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="tQX-GG-lKI"/>
-                                        </constraints>
-                                    </view>
+                                    <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFI-1Y-KKT">
+                                        <rect key="frame" x="23" y="-2" width="106" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="tintColor" red="0.2307627367" green="0.010723856170000001" blue="0.36422649419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Transcrintion">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sintezButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcS-Xr-sP0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Ilh-zi-T7V" secondAttribute="bottom" id="0ST-Lg-2ql"/>
+                                    <constraint firstAttribute="height" constant="40" id="tQX-GG-lKI"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVO-Xj-K3S">
+                                <rect key="frame" x="0.0" y="44" width="414" height="778"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-zO-szt">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="778"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
                                     <constraint firstItem="5fW-zO-szt" firstAttribute="centerX" secondItem="gVO-Xj-K3S" secondAttribute="centerX" id="6z4-sR-ZhK"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ilh-zi-T7V" secondAttribute="trailing" id="CZo-r9-LPw"/>
                                     <constraint firstItem="5fW-zO-szt" firstAttribute="centerY" secondItem="gVO-Xj-K3S" secondAttribute="centerY" id="F1S-ho-dU7"/>
-                                    <constraint firstItem="Ilh-zi-T7V" firstAttribute="leading" secondItem="gVO-Xj-K3S" secondAttribute="leading" id="Frw-O4-lcI"/>
                                     <constraint firstAttribute="bottom" secondItem="5fW-zO-szt" secondAttribute="bottom" id="P6l-9C-Ymv"/>
                                     <constraint firstAttribute="trailing" secondItem="5fW-zO-szt" secondAttribute="trailing" id="VuI-yi-gHf"/>
                                     <constraint firstItem="5fW-zO-szt" firstAttribute="leading" secondItem="gVO-Xj-K3S" secondAttribute="leading" id="Y4O-OB-xNW"/>
@@ -58,8 +58,11 @@
                         <constraints>
                             <constraint firstItem="gVO-Xj-K3S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0z9-j8-CsJ"/>
                             <constraint firstItem="gVO-Xj-K3S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4mR-Um-9y3"/>
+                            <constraint firstItem="Ilh-zi-T7V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7xX-No-kJN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gVO-Xj-K3S" secondAttribute="trailing" id="8Sp-nP-t0w"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gVO-Xj-K3S" secondAttribute="bottom" id="aTA-Wp-QRG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ilh-zi-T7V" secondAttribute="bottom" id="DoI-LP-7IY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gVO-Xj-K3S" secondAttribute="bottom" constant="40" id="aTA-Wp-QRG"/>
+                            <constraint firstItem="Ilh-zi-T7V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xSy-tD-WNY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -73,33 +76,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="i56-4x-wnd">
-            <objects>
-                <viewController id="O3l-Az-zoZ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="haA-C9-08w">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P0v-dL-SDZ">
-                                <rect key="frame" x="0.0" y="533" width="414" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem systemItem="favorites" id="RCi-ZC-AqG"/>
-                                    <tabBarItem systemItem="more" id="uDl-Xz-cV4"/>
-                                </items>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tabBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="dnf-HO-NnE"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Whd-85-auf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1113" y="29"/>
         </scene>
     </scenes>
 </document>

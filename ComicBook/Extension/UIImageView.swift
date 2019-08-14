@@ -9,11 +9,44 @@
 import UIKit
 
 extension UIImageView {
-    func loadImage(by stringImage: String) {
-        let url = URL(string: stringImage)!
-        let data = try! Data(contentsOf: url)
-        DispatchQueue.main.async {
-            self.image = UIImage(data: data)
+    func loadImage(by urlImage: String) {
+//        let url = URL(string: urlImage)!
+//        let data = try! Data(contentsOf: url)
+//        DispatchQueue.main.async {
+//            self.image = UIImage(data: data)
+//        }
+        let cache = URLCache.shared
+        
+        guard let url = URL(string: urlImage) else {
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        if let data = cache.cachedResponse(for: request)?.data {
+            // данные есть на диске
+            DispatchQueue.main.async {
+                self.image = UIImage(data: data)
+            }
+        } else {
+            // данных нет на диске
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print("error with data: \(error)")
+                    return
+                }
+                
+                if
+                    let data = data,
+                    let response = response
+                {
+                    let cacheData = CachedURLResponse(response: response, data: data)
+                    cache.storeCachedResponse(cacheData, for: request)
+                    DispatchQueue.main.async {
+                        self.image = UIImage(data: data)
+                    }
+                }
+            }.resume()
         }
     }
 }

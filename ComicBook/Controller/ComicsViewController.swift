@@ -11,7 +11,7 @@
 //* При свайпе враво/влево – следующий/предыдущий +/-
 //* При встряхивании можно смотреть случайный комикс +
 //* Чтение комикса с помощью синтезатора речи +
-//* Можно поделиться комиксом
+//* Можно поделиться комиксом +
 
 import UIKit
 import AVFoundation
@@ -51,9 +51,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func loadData() {
+        sinthes.stopSpeaking(at: .immediate)
         let comics = BaseServices()
         comics.getPhotos(onComplited: { (comics) in
-            self.comicsImage.loadImage(by: comics.img)
+            self.comicsImage.loadImage(by: comics.img) //выбивает ошибку когда трясу
             self.transcription = comics.transcript
         }, onError:  { (error) in
             print("Error with loading data: \(error)")
@@ -76,5 +77,20 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func stopButton(_ sender: Any) {
         sinthes.stopSpeaking(at: .immediate)
     }
+  
+    @IBAction func shareImageButton(_ sender: Any) {
+        guard let image = comicsImage.image else {
+            return
+        }
+        
+        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+//        activityController.completionWithItemsHandler = { (nil, completed, _, error) in
+//
+//        }
+        
+        present(activityController, animated: true)
+    }
+    
 }
 

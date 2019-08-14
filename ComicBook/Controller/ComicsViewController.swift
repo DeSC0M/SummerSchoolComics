@@ -5,8 +5,16 @@
 //  Created by Pavel Murzinov on 13/08/2019.
 //  Copyright © 2019 Pavel Murzinov. All rights reserved.
 //
+//
+//* Экран со случайным комиксом на весь экран +
+//* Возможность скроллить его и менять зум +
+//* При свайпе враво/влево – следующий/предыдущий
+//* При встряхивании можно смотреть случайный комикс +
+//* Чтение комикса с помощью синтезатора речи
+//* Можно поделиться комиксом
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, UIScrollViewDelegate {
 
@@ -48,6 +56,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }, onError:  { (error) in
             print("Error with loading data: \(error)")
         })
+    }
+    
+    
+    @IBAction func sintezButton(_ sender: Any) {
+        let utterfance = AVSpeechUtterance(string: transcription ?? "")
+        let sinthes = AVSpeechSynthesizer()
+        sinthes.speak(utterfance)
     }
 }
 

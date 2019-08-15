@@ -8,8 +8,8 @@
 //
 //* Экран со случайным комиксом на весь экран +
 //* Возможность скроллить его и менять зум +
-//* При свайпе враво/влево – следующий/предыдущий +/-
-//* При встряхивании можно смотреть случайный комикс +
+//* При свайпе враво/влево – следующий/предыдущий +/+
+//* При встряхивании можно смотреть случайный комикс -
 //* Чтение комикса с помощью синтезатора речи +
 //* Можно поделиться комиксом +
 
@@ -79,7 +79,16 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func rightSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
         if sender.state == .ended {
-            loadData()
+            if counterComics == arrayOfComics.count{
+                loadData()
+            } else {
+                sinthes.stopSpeaking(at: .immediate)
+                
+                print("Предыдущий комикс получен")
+                transcription = arrayOfComics[counterComics].transcript
+                comicsImage.loadImage(by: arrayOfComics[counterComics].img)
+                counterComics += 1
+            }
         }
     }
     
@@ -99,20 +108,22 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func leftSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
         if sender.state == .ended {
-            let nomberOfComics = counterComics - 2
-            if nomberOfComics < 0 {
-                print("комиксов раньше нет")
-                return
-            }
-            sinthes.stopSpeaking(at: .immediate)
-            counterComics -= 1
-            print("Предыдущий комикс получен")
-            transcription = arrayOfComics[nomberOfComics].transcript
-            comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img)
-            
+            loadCacheComics()
         }
     }
     
+    func loadCacheComics() {
+        let nomberOfComics = counterComics - 2
+        if nomberOfComics < 0 {
+            print("комиксов раньше нет")
+            return
+        }
+        sinthes.stopSpeaking(at: .immediate)
+        counterComics -= 1
+        print("Предыдущий комикс получен")
+        transcription = arrayOfComics[nomberOfComics].transcript
+        comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img)
+    }
     
 }
 

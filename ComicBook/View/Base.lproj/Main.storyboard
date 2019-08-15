@@ -99,6 +99,7 @@
                         <connections>
                             <outlet property="comicsImage" destination="5fW-zO-szt" id="BV5-Br-Aaf"/>
                             <outletCollection property="gestureRecognizers" destination="jo4-hG-4nl" appends="YES" id="vEl-d5-QA6"/>
+                            <outletCollection property="gestureRecognizers" destination="PDa-LM-7wM" appends="YES" id="ky9-BD-LlR"/>
                         </connections>
                     </view>
                     <connections>
@@ -111,6 +112,12 @@
                     <rectEdge key="edges" right="YES"/>
                     <connections>
                         <action selector="rightSwype:" destination="BYZ-38-t0r" id="xCp-AB-mtg"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="PDa-LM-7wM">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="leftSwype:" destination="BYZ-38-t0r" id="MYg-2Q-v3x"/>
                     </connections>
                 </screenEdgePanGestureRecognizer>
             </objects>

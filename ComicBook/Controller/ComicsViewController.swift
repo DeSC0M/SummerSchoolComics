@@ -26,7 +26,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     let sinthes = AVSpeechSynthesizer()
     
-    var arrayOfComics = [ComicsEntry]()
+    var arrayOfComics = [ComicsEntry]() // массив в котором хранятся данные комикса
+    var counterComics: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         sinthes.stopSpeaking(at: .immediate)
         let comics = BaseServices()
         comics.getPhotos(onComplited: { (comics) in
+            
             self.arrayOfComics.append(comics)//добавление элементтов в массив
+            self.counterComics = self.arrayOfComics.count // присвоение количества комиксов
+            
             DispatchQueue.main.async {
                 self.comicsImage.loadImage(by: comics.img) //выбивает ошибку при встряхивании
             }
@@ -92,6 +96,23 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         present(activityController, animated: true)
     }
+    
+    @IBAction func leftSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == .ended {
+            let nomberOfComics = counterComics - 2
+            if nomberOfComics < 0 {
+                print("комиксов раньше нет")
+                return
+            }
+            sinthes.stopSpeaking(at: .immediate)
+            counterComics -= 1
+            print("Предыдущий комикс получен")
+            transcription = arrayOfComics[nomberOfComics].transcript
+            comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img)
+            
+        }
+    }
+    
     
 }
 

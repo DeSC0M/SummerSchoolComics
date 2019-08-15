@@ -44,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setupCache() {
         let cache = URLCache.shared
-        cache.diskCapacity = 1024 * 1024 * 50
-        cache.memoryCapacity = 1024 * 1024 * 10
+        cache.diskCapacity = 1024 * 1024 * 10
+        cache.memoryCapacity = 1024 * 1024 * 5
     }
 }
 

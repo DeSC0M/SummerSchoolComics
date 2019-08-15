@@ -16,11 +16,12 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ComicsViewController: UIViewController, UIScrollViewDelegate {
 
     
     @IBOutlet weak var scrollImageUIScroll: UIScrollView!
     @IBOutlet weak var comicsImage: UIImageView!
+    @IBOutlet weak var shakeView: ShakeView!
     
     var transcription: String?
     
@@ -31,6 +32,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        shakeView.onShake = { [weak self] in
+            self?.loadData()
+        }
         // Do any additional setup after loading the view.
         configureScrollAndImageView()
     }
@@ -56,10 +60,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func loadData() {
         sinthes.stopSpeaking(at: .immediate)
         let comics = BaseServices()
-        comics.getPhotos(onComplited: { (comics) in
+        comics.getPhotos(onComplited: { comics in
             
-            self.arrayOfComics.append(comics)//добавление элементтов в массив
-            self.counterComics = self.arrayOfComics.count // присвоение количества комиксов
+            self.arrayOfComics.append(comics)
+            self.counterComics = self.arrayOfComics.count
             
             DispatchQueue.main.async {
                 self.comicsImage.loadImage(by: comics.img) //выбивает ошибку при встряхивании

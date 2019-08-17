@@ -31,35 +31,25 @@
                                             <action selector="stopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="70R-dw-PoB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFI-1Y-KKT">
-                                        <rect key="frame" x="23" y="0.0" width="106" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJa-Z9-odl">
+                                        <rect key="frame" x="321" y="6" width="26" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <color key="tintColor" red="0.2307627367" green="0.010723856170000001" blue="0.36422649419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Transcrintion">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sintezButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcS-Xr-sP0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIe-BP-9aZ">
-                                        <rect key="frame" x="306" y="0.0" width="46" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <state key="normal" title="Share">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJa-Z9-odl">
-                                        <rect key="frame" x="306" y="0.0" width="46" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <state key="normal" title="Share">
+                                        <state key="normal" image="Frame">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
                                             <action selector="shareImageButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GIC-L0-UTl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFI-1Y-KKT">
+                                        <rect key="frame" x="63" y="8" width="26" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.2307627367" green="0.010723856170000001" blue="0.36422649419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="PlayButton">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sintezButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcS-Xr-sP0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -99,9 +89,11 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="jo4-hG-4nl" appends="YES" id="vEl-d5-QA6"/>
                             <outletCollection property="gestureRecognizers" destination="PDa-LM-7wM" appends="YES" id="ky9-BD-LlR"/>
+                            <outletCollection property="gestureRecognizers" destination="rwK-G2-bt6" appends="YES" id="j0i-UU-CQi"/>
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="bottomBar" destination="Ilh-zi-T7V" id="VFI-vd-uVH"/>
                         <outlet property="comicsImage" destination="5fW-zO-szt" id="ZZq-89-Tm7"/>
                         <outlet property="scrollImageUIScroll" destination="gVO-Xj-K3S" id="UKC-bu-bvb"/>
                         <outlet property="shakeView" destination="8bC-Xf-vdC" id="HcU-iO-LvB"/>
@@ -120,8 +112,17 @@
                         <action selector="leftSwype:" destination="BYZ-38-t0r" id="MYg-2Q-v3x"/>
                     </connections>
                 </screenEdgePanGestureRecognizer>
+                <tapGestureRecognizer id="rwK-G2-bt6">
+                    <connections>
+                        <action selector="tapTap:" destination="BYZ-38-t0r" id="xrR-Jz-dMS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Frame" width="17" height="20"/>
+        <image name="PlayButton" width="25" height="26"/>
+    </resources>
 </document>

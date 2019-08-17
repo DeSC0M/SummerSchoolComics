@@ -9,7 +9,7 @@
 //* Экран со случайным комиксом на весь экран +
 //* Возможность скроллить его и менять зум +
 //* При свайпе враво/влево – следующий/предыдущий +/+
-//* При встряхивании можно смотреть случайный комикс -
+//* При встряхивании можно смотреть случайный комикс +
 //* Чтение комикса с помощью синтезатора речи +
 //* Можно поделиться комиксом +
 
@@ -22,6 +22,7 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollImageUIScroll: UIScrollView!
     @IBOutlet weak var comicsImage: UIImageView!
     @IBOutlet weak var shakeView: ShakeView!
+    @IBOutlet weak var bottomBar: UIView!
     
     var transcription: String?
     
@@ -30,13 +31,17 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     var arrayOfComics = [ComicsEntry]() // массив в котором хранятся данные комикса
     var counterComics: Int = 0
     
+    let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         shakeView.onShake = { [weak self] in
             self?.loadData()
         }
-        // Do any additional setup after loading the view.
+        
         configureScrollAndImageView()
+        
+        statusBar.isHidden = false
     }
 
     func configureScrollAndImageView() {
@@ -88,7 +93,6 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
             } else {
                 sinthes.stopSpeaking(at: .immediate)
                 
-                print("Предыдущий комикс получен")
                 transcription = arrayOfComics[counterComics].transcript
                 comicsImage.loadImage(by: arrayOfComics[counterComics].img)
                 counterComics += 1
@@ -119,15 +123,21 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     func loadCacheComics() {
         let nomberOfComics = counterComics - 2
         if nomberOfComics < 0 {
-            print("комиксов раньше нет")
             return
         }
         sinthes.stopSpeaking(at: .immediate)
         counterComics -= 1
-        print("Предыдущий комикс получен")
         transcription = arrayOfComics[nomberOfComics].transcript
         comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img)
     }
+    
+    @IBAction func tapTap(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            bottomBar.isHidden = !bottomBar.isHidden
+            statusBar.isHidden = !statusBar.isHidden
+        }
+    }
+    
     
 }
 

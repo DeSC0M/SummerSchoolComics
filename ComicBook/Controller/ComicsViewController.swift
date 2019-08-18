@@ -155,8 +155,28 @@ class ComicsViewController: UIViewController {
     }
     
     func hiddenUserInterface(isHidden: Bool) {
+        isHidden == true ? showUI() : hiddenUI(isHidden: isHidden)
+    }
+    
+    func hiddenUI(isHidden: Bool) {
+        bottomBar.alpha = 0
+        statusBar.alpha = 0
+        UIView.animate(withDuration: 0.3) {
+            self.bottomBar.alpha = 1
+            self.statusBar.alpha = 1
+        }
         bottomBar.isHidden = isHidden
         statusBar.isHidden = isHidden
+    }
+    
+    func showUI() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomBar.alpha = 0
+            self.statusBar.alpha = 0
+        }) { (finished) in
+            self.bottomBar.isHidden = finished
+            self.statusBar.isHidden = finished
+        }
     }
     
     func startSintez() {
@@ -208,7 +228,9 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
     }
     
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        scrollImageUIScroll.zoomScale = scrollImageUIScroll.minimumZoomScale
-        hiddenUserInterface(isHidden: false)
+        DispatchQueue.main.async {
+            self.scrollImageUIScroll.setZoomScale(self.scrollImageUIScroll.minimumZoomScale, animated: true)
+            self.hiddenUserInterface(isHidden: false)
+        }
     }
 }

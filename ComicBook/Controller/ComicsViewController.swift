@@ -84,6 +84,11 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
             }
             self.transcription = comics.transcript
         }, onError:  { (error) in
+            DispatchQueue.main.async {
+                self.comicsImage.image = UIImage(named: "DefaultImage")
+                self.transcription = "No connection to server. Chech internet connection"
+            }
+            
             print("Error with loading data: \(error)")
         })
     }

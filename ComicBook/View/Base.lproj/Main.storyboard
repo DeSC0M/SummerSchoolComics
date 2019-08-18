@@ -79,7 +79,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gVO-Xj-K3S" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="0z9-j8-CsJ"/>

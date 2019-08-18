@@ -17,9 +17,6 @@
 		060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC0230344080085A2D6 /* NetworkConst.swift */; };
 		060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC2230346A70085A2D6 /* UIImageView.swift */; };
 		060BDEC623034C8A0085A2D6 /* ShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC523034C8A0085A2D6 /* ShakeView.swift */; };
-		060BDECC2304AFC10085A2D6 /* ImageDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 060BDECA2304AFC10085A2D6 /* ImageDataModel.xcdatamodeld */; };
-		060BDECF2304B2A10085A2D6 /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDECD2304B2A10085A2D6 /* Image+CoreDataClass.swift */; };
-		060BDED02304B2A10085A2D6 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDECE2304B2A10085A2D6 /* Image+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +32,6 @@
 		060BDEC0230344080085A2D6 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
 		060BDEC2230346A70085A2D6 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		060BDEC523034C8A0085A2D6 /* ShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
-		060BDECB2304AFC10085A2D6 /* ImageDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImageDataModel.xcdatamodel; sourceTree = "<group>"; };
-		060BDECD2304B2A10085A2D6 /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
-		060BDECE2304B2A10085A2D6 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +78,6 @@
 		060BDEB4230338DF0085A2D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				060BDEC92304AF990085A2D6 /* DataBase */,
 				060BDEBA230342820085A2D6 /* ComicsEntry.swift */,
 			);
 			path = Model;
@@ -140,16 +133,6 @@
 				060BDEC2230346A70085A2D6 /* UIImageView.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		060BDEC92304AF990085A2D6 /* DataBase */ = {
-			isa = PBXGroup;
-			children = (
-				060BDECD2304B2A10085A2D6 /* Image+CoreDataClass.swift */,
-				060BDECE2304B2A10085A2D6 /* Image+CoreDataProperties.swift */,
-				060BDECA2304AFC10085A2D6 /* ImageDataModel.xcdatamodeld */,
-			);
-			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,10 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				060BDECF2304B2A10085A2D6 /* Image+CoreDataClass.swift in Sources */,
-				060BDED02304B2A10085A2D6 /* Image+CoreDataProperties.swift in Sources */,
 				060BDEBE230343300085A2D6 /* BaseServices.swift in Sources */,
-				060BDECC2304AFC10085A2D6 /* ImageDataModel.xcdatamodeld in Sources */,
 				060BDEA52303368B0085A2D6 /* ComicsViewController.swift in Sources */,
 				060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */,
 				060BDEC623034C8A0085A2D6 /* ShakeView.swift in Sources */,
@@ -389,7 +369,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmurzinov.ComicBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -408,7 +388,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmurzinov.ComicBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -434,19 +414,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		060BDECA2304AFC10085A2D6 /* ImageDataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				060BDECB2304AFC10085A2D6 /* ImageDataModel.xcdatamodel */,
-			);
-			currentVersion = 060BDECB2304AFC10085A2D6 /* ImageDataModel.xcdatamodel */;
-			path = ImageDataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 060BDE972303368B0085A2D6 /* Project object */;
 }

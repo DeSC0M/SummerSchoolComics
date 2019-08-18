@@ -35,13 +35,17 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         shakeView.onShake = { [weak self] in
             self?.loadData()
         }
         
         configureScrollAndImageView()
         
+        scrollImageUIScroll.delegate = self 
+        
         statusBar.isHidden = false
+        statusBar.backgroundColor = .black
     }
 
     func configureScrollAndImageView() {
@@ -50,14 +54,13 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
         
         scrollImageUIScroll.delegate = self
         scrollImageUIScroll.minimumZoomScale = 1.0
-        scrollImageUIScroll.maximumZoomScale = 10.0
+        scrollImageUIScroll.maximumZoomScale = 3.0
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return comicsImage
     }
     
-    //устанавливаем нужный цвет в статус баре
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -71,7 +74,7 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
             self.counterComics = self.arrayOfComics.count
             
             DispatchQueue.main.async {
-                self.comicsImage.loadImage(by: comics.img) //выбивает ошибку при встряхивании
+                self.comicsImage.loadImage(by: comics.img)
             }
             self.transcription = comics.transcript
         }, onError:  { (error) in
@@ -137,7 +140,6 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
             statusBar.isHidden = !statusBar.isHidden
         }
     }
-    
     
 }
 

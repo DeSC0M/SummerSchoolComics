@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,31 +14,37 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ComicsViewController" customModule="ComicBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="ShakeView" customModule="ComicBook" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-zi-T7V">
-                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVO-Xj-K3S">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBX-7X-s9G">
-                                        <rect key="frame" x="192" y="0.0" width="32" height="34"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-zO-szt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerX" secondItem="gVO-Xj-K3S" secondAttribute="centerX" id="6z4-sR-ZhK"/>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerY" secondItem="gVO-Xj-K3S" secondAttribute="centerY" id="F1S-ho-dU7"/>
+                                    <constraint firstAttribute="bottom" secondItem="5fW-zO-szt" secondAttribute="bottom" id="P6l-9C-Ymv"/>
+                                    <constraint firstAttribute="trailing" secondItem="5fW-zO-szt" secondAttribute="trailing" id="VuI-yi-gHf"/>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="leading" secondItem="gVO-Xj-K3S" secondAttribute="leading" id="Y4O-OB-xNW"/>
+                                    <constraint firstItem="5fW-zO-szt" firstAttribute="top" secondItem="gVO-Xj-K3S" secondAttribute="top" id="ZpY-iu-gco"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-zi-T7V">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBX-7X-s9G">
+                                        <rect key="frame" x="174" y="8" width="26" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <state key="normal" title="Stop">
+                                        <state key="normal" image="StopButton">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
                                             <action selector="stopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="70R-dw-PoB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJa-Z9-odl">
-                                        <rect key="frame" x="321" y="6" width="26" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="Frame">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="shareImageButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GIC-L0-UTl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFI-1Y-KKT">
@@ -52,37 +58,32 @@
                                             <action selector="sintezButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcS-Xr-sP0"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJa-Z9-odl">
+                                        <rect key="frame" x="281" y="8" width="26" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Frame">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="shareImageButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GIC-L0-UTl"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="tQX-GG-lKI"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVO-Xj-K3S">
-                                <rect key="frame" x="0.0" y="44" width="414" height="778"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-zO-szt">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="778"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerX" secondItem="gVO-Xj-K3S" secondAttribute="centerX" id="6z4-sR-ZhK"/>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerY" secondItem="gVO-Xj-K3S" secondAttribute="centerY" id="F1S-ho-dU7"/>
-                                    <constraint firstAttribute="bottom" secondItem="5fW-zO-szt" secondAttribute="bottom" id="P6l-9C-Ymv"/>
-                                    <constraint firstAttribute="trailing" secondItem="5fW-zO-szt" secondAttribute="trailing" id="VuI-yi-gHf"/>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="leading" secondItem="gVO-Xj-K3S" secondAttribute="leading" id="Y4O-OB-xNW"/>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="top" secondItem="gVO-Xj-K3S" secondAttribute="top" id="ZpY-iu-gco"/>
-                                </constraints>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="gVO-Xj-K3S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0z9-j8-CsJ"/>
+                            <constraint firstItem="gVO-Xj-K3S" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="0z9-j8-CsJ"/>
                             <constraint firstItem="gVO-Xj-K3S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4mR-Um-9y3"/>
                             <constraint firstItem="Ilh-zi-T7V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7xX-No-kJN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gVO-Xj-K3S" secondAttribute="trailing" id="8Sp-nP-t0w"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ilh-zi-T7V" secondAttribute="bottom" id="DoI-LP-7IY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gVO-Xj-K3S" secondAttribute="bottom" constant="40" id="aTA-Wp-QRG"/>
+                            <constraint firstAttribute="bottom" secondItem="gVO-Xj-K3S" secondAttribute="bottom" id="aTA-Wp-QRG"/>
                             <constraint firstItem="Ilh-zi-T7V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xSy-tD-WNY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -124,5 +125,6 @@
     <resources>
         <image name="Frame" width="17" height="20"/>
         <image name="PlayButton" width="25" height="26"/>
+        <image name="StopButton" width="26" height="26"/>
     </resources>
 </document>

@@ -17,7 +17,7 @@ import UIKit
 import AVFoundation
 import JGProgressHUD
 
-class ComicsViewController: UIViewController, UIScrollViewDelegate {
+class ComicsViewController: UIViewController {
 
     let playButton = "PlayButton"
     let stopButton = "StopButton"
@@ -48,8 +48,6 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
         }
         
         configureScrollAndImageView()
-        
-        scrollImageUIScroll.delegate = self
         
         statusBar.isHidden = false
         statusBar.backgroundColor = .black
@@ -152,9 +150,13 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func tapTap(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
-            bottomBar.isHidden = !bottomBar.isHidden
-            statusBar.isHidden = !statusBar.isHidden
+            hiddenUserInterface(isHidden: !bottomBar.isHidden)
         }
+    }
+    
+    func hiddenUserInterface(isHidden: Bool) {
+        bottomBar.isHidden = isHidden
+        statusBar.isHidden = isHidden
     }
     
     func startSintez() {
@@ -196,8 +198,17 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     
 }
 
-extension ComicsViewController: AVSpeechSynthesizerDelegate {
+extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         playTranscriptionButton.setImage(UIImage(named: playButton), for: .normal)
+    }
+    
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        hiddenUserInterface(isHidden: true)
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        scrollImageUIScroll.zoomScale = scrollImageUIScroll.minimumZoomScale
+        hiddenUserInterface(isHidden: false)
     }
 }

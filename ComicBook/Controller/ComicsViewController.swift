@@ -15,6 +15,7 @@
 
 import UIKit
 import AVFoundation
+import JGProgressHUD
 
 class ComicsViewController: UIViewController, UIScrollViewDelegate {
 
@@ -72,6 +73,10 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func loadData() {
+        
+        let HUD = JGProgressHUD(style: .dark)
+        progressHUD(HUD: HUD, textLable: "Loading", dismissTimer: nil, indicator: nil)
+        
         sinthes.stopSpeaking(at: .immediate)
         let comics = BaseServices()
         comics.getPhotos(onComplited: { comics in
@@ -81,21 +86,25 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
             
             DispatchQueue.main.async {
                 self.comicsImage.loadImage(by: comics.img)
+                
+                self.progressHUD(HUD: HUD, textLable: "Success", dismissTimer: 2.0, indicator: "success")
             }
+            
             self.transcription = comics.transcript
         }, onError:  { (error) in
             DispatchQueue.main.async {
                 self.comicsImage.image = UIImage(named: "DefaultImage")
                 self.transcription = "No connection to server. Chech internet connection"
+                
+                self.progressHUD(HUD: HUD, textLable: "Error", dismissTimer: 2.0, indicator: "error")
             }
-            
+
             print("Error with loading data: \(error)")
         })
     }
     
     
     @IBAction func sintezButton(_ sender: Any) {
-//        startSintez()
         playTranscriptionButton.imageView?.image == UIImage(named: playButton) ? startSintez() : stopSintez()
     }
     
@@ -164,6 +173,25 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
             playTranscriptionButton.setImage(image, for: .normal)
         }
         sinthes.stopSpeaking(at: .immediate)
+    }
+    
+    func progressHUD(HUD: JGProgressHUD, textLable: String, dismissTimer: TimeInterval?, indicator: String?) {
+        HUD.textLabel.text = textLable
+        
+        switch indicator {
+        case "success":
+            HUD.indicatorView = JGProgressHUDSuccessIndicatorView.init()
+        case "error":
+            HUD.indicatorView = JGProgressHUDErrorIndicatorView.init()
+        default:
+            HUD.indicatorView = JGProgressHUDIndeterminateIndicatorView.init()
+        }
+        
+        HUD.show(in: self.view, animated: true)
+        
+        if let timeInterval = dismissTimer {
+            HUD.dismiss(afterDelay: timeInterval)
+        }
     }
     
 }

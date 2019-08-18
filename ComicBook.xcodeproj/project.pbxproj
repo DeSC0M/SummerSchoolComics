@@ -17,6 +17,7 @@
 		060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC0230344080085A2D6 /* NetworkConst.swift */; };
 		060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC2230346A70085A2D6 /* UIImageView.swift */; };
 		060BDEC623034C8A0085A2D6 /* ShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC523034C8A0085A2D6 /* ShakeView.swift */; };
+		3DC23F3143CDB31A96125D2C /* Pods_ComicBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18E9E71BE45D43D246B5CFB /* Pods_ComicBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		060BDEC0230344080085A2D6 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
 		060BDEC2230346A70085A2D6 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		060BDEC523034C8A0085A2D6 /* ShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
+		2A8751BEA0559773A98FFAA2 /* Pods-ComicBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicBook.debug.xcconfig"; path = "Target Support Files/Pods-ComicBook/Pods-ComicBook.debug.xcconfig"; sourceTree = "<group>"; };
+		CDC05CDAEA7788E39BFC1D5A /* Pods-ComicBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicBook.release.xcconfig"; path = "Target Support Files/Pods-ComicBook/Pods-ComicBook.release.xcconfig"; sourceTree = "<group>"; };
+		D18E9E71BE45D43D246B5CFB /* Pods_ComicBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComicBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC23F3143CDB31A96125D2C /* Pods_ComicBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +56,8 @@
 				060BDEA12303368B0085A2D6 /* ComicBook */,
 				060BDEAE2303368C0085A2D6 /* Info.plist */,
 				060BDEA02303368B0085A2D6 /* Products */,
+				DE4A823C5DD39107FFEA4671 /* Pods */,
+				C35BA4DD5D7BD559F6D2A0B3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +142,24 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		C35BA4DD5D7BD559F6D2A0B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D18E9E71BE45D43D246B5CFB /* Pods_ComicBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE4A823C5DD39107FFEA4671 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A8751BEA0559773A98FFAA2 /* Pods-ComicBook.debug.xcconfig */,
+				CDC05CDAEA7788E39BFC1D5A /* Pods-ComicBook.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,9 +167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 060BDEB12303368C0085A2D6 /* Build configuration list for PBXNativeTarget "ComicBook" */;
 			buildPhases = (
+				86EFE16BC551AB02C8FCD02F /* [CP] Check Pods Manifest.lock */,
 				060BDE9B2303368B0085A2D6 /* Sources */,
 				060BDE9C2303368B0085A2D6 /* Frameworks */,
 				060BDE9D2303368B0085A2D6 /* Resources */,
+				AA7FC03EB7EDCE66EC5BFF0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -200,6 +227,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		86EFE16BC551AB02C8FCD02F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ComicBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA7FC03EB7EDCE66EC5BFF0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ComicBook/Pods-ComicBook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ComicBook/Pods-ComicBook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComicBook/Pods-ComicBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		060BDE9B2303368B0085A2D6 /* Sources */ = {
@@ -356,6 +425,7 @@
 		};
 		060BDEB22303368C0085A2D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A8751BEA0559773A98FFAA2 /* Pods-ComicBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -375,6 +445,7 @@
 		};
 		060BDEB32303368C0085A2D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDC05CDAEA7788E39BFC1D5A /* Pods-ComicBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

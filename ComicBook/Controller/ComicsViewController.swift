@@ -23,6 +23,7 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var comicsImage: UIImageView!
     @IBOutlet weak var shakeView: ShakeView!
     @IBOutlet weak var bottomBar: UIView!
+    @IBOutlet weak var playTranscriptionButton: UIButton!
     
     var transcription: String?
     
@@ -36,13 +37,15 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        sinthes.delegate = self
+        
         shakeView.onShake = { [weak self] in
             self?.loadData()
         }
         
         configureScrollAndImageView()
         
-        scrollImageUIScroll.delegate = self 
+        scrollImageUIScroll.delegate = self
         
         statusBar.isHidden = false
         statusBar.backgroundColor = .black
@@ -84,8 +87,8 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func sintezButton(_ sender: Any) {
-        let utterfance = AVSpeechUtterance(string: transcription ?? "")
-        sinthes.speak(utterfance)
+//        startSintez()
+        playTranscriptionButton.imageView?.image == UIImage(named: "PlayButton") ? startSintez() : stopSintez()
     }
     
     
@@ -101,10 +104,6 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
                 counterComics += 1
             }
         }
-    }
-    
-    @IBAction func stopButton(_ sender: Any) {
-        sinthes.stopSpeaking(at: .immediate)
     }
   
     @IBAction func shareImageButton(_ sender: Any) {
@@ -141,5 +140,28 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    func startSintez() {
+        if let image = UIImage(named: "StopButton") {
+            playTranscriptionButton.setImage(image, for: .normal)
+        }
+        if transcription == "" {
+            transcription = "this comic cannot be voiced"
+        }
+        let utterfance = AVSpeechUtterance(string: transcription ?? "")
+        sinthes.speak(utterfance)
+    }
+    
+    func stopSintez() {
+        if let image = UIImage(named: "PlayButton") {
+            playTranscriptionButton.setImage(image, for: .normal)
+        }
+        sinthes.stopSpeaking(at: .immediate)
+    }
+    
 }
 
+extension ComicsViewController: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        playTranscriptionButton.setImage(UIImage(named: "PlayButton"), for: .normal)
+    }
+}

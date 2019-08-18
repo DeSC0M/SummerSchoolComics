@@ -37,19 +37,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-zi-T7V">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBX-7X-s9G">
-                                        <rect key="frame" x="174" y="8" width="26" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="StopButton">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="stopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="70R-dw-PoB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFI-1Y-KKT">
-                                        <rect key="frame" x="63" y="8" width="26" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFI-1Y-KKT">
+                                        <rect key="frame" x="40" y="7" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="26" id="MBh-h4-y2k"/>
+                                            <constraint firstAttribute="height" constant="26" id="eBZ-Ie-3YI"/>
+                                        </constraints>
                                         <color key="tintColor" red="0.2307627367" green="0.010723856170000001" blue="0.36422649419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="PlayButton">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -58,9 +51,12 @@
                                             <action selector="sintezButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcS-Xr-sP0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJa-Z9-odl">
-                                        <rect key="frame" x="281" y="8" width="26" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJa-Z9-odl">
+                                        <rect key="frame" x="309" y="7" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="26" id="EoK-aQ-Izp"/>
+                                            <constraint firstAttribute="height" constant="26" id="kvC-pw-EyX"/>
+                                        </constraints>
                                         <state key="normal" image="Frame">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
@@ -71,6 +67,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="QFI-1Y-KKT" firstAttribute="top" secondItem="Ilh-zi-T7V" secondAttribute="top" constant="7" id="0t7-Xt-aAn"/>
+                                    <constraint firstAttribute="trailing" secondItem="LJa-Z9-odl" secondAttribute="trailing" constant="40" id="JFp-U9-xkn"/>
+                                    <constraint firstItem="LJa-Z9-odl" firstAttribute="centerY" secondItem="Ilh-zi-T7V" secondAttribute="centerY" id="Jek-eK-yf5"/>
+                                    <constraint firstItem="LJa-Z9-odl" firstAttribute="top" secondItem="Ilh-zi-T7V" secondAttribute="top" constant="7" id="XCF-57-ebX"/>
+                                    <constraint firstAttribute="bottom" secondItem="QFI-1Y-KKT" secondAttribute="bottom" constant="7" id="bBk-hU-S7v"/>
+                                    <constraint firstItem="QFI-1Y-KKT" firstAttribute="centerY" secondItem="Ilh-zi-T7V" secondAttribute="centerY" id="hyv-pK-yPK"/>
+                                    <constraint firstAttribute="bottom" secondItem="LJa-Z9-odl" secondAttribute="bottom" constant="7" id="lf9-lh-QgA"/>
+                                    <constraint firstItem="QFI-1Y-KKT" firstAttribute="leading" secondItem="Ilh-zi-T7V" secondAttribute="leading" constant="40" id="pAb-pH-Pi2"/>
                                     <constraint firstAttribute="height" constant="40" id="tQX-GG-lKI"/>
                                 </constraints>
                             </view>
@@ -96,6 +100,7 @@
                     <connections>
                         <outlet property="bottomBar" destination="Ilh-zi-T7V" id="VFI-vd-uVH"/>
                         <outlet property="comicsImage" destination="5fW-zO-szt" id="ZZq-89-Tm7"/>
+                        <outlet property="playTranscriptionButton" destination="QFI-1Y-KKT" id="r5L-ol-czm"/>
                         <outlet property="scrollImageUIScroll" destination="gVO-Xj-K3S" id="UKC-bu-bvb"/>
                         <outlet property="shakeView" destination="8bC-Xf-vdC" id="HcU-iO-LvB"/>
                     </connections>
@@ -125,6 +130,5 @@
     <resources>
         <image name="Frame" width="17" height="20"/>
         <image name="PlayButton" width="25" height="26"/>
-        <image name="StopButton" width="26" height="26"/>
     </resources>
 </document>

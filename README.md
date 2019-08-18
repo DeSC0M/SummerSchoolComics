@@ -4,16 +4,16 @@
 Открыть консоль и перейти в папку с проектом. 
 Следом ввести данные команды: 
 
-sudo gem install cocoapods
-pod init
+    sudo gem install cocoapods
+    pod init
 
 Откройте создавшийся PodFile и введите в него следующий код: 
 
-pod 'JGProgressHUD'
+    pod 'JGProgressHUD'
 
 После чего, вернувшись в терминал введите: 
 
-pod install 
+    pod install 
 
 # Приложение готово к запуску.
 

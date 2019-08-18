@@ -38,6 +38,8 @@ class ComicsViewController: UIViewController {
     
     let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
     
+    var hiddenUserInterfaceFlag = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,7 +86,7 @@ class ComicsViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.comicsImage.loadImage(by: comics.img)
-                
+              
                 self.progressHUD(HUD: HUD, textLable: "Success", dismissTimer: 2.0, indicator: "success")
             }
             
@@ -150,6 +152,7 @@ class ComicsViewController: UIViewController {
     
     @IBAction func tapTap(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
+            hiddenUserInterfaceFlag = !hiddenUserInterfaceFlag
             hiddenUserInterface(isHidden: !bottomBar.isHidden)
         }
     }
@@ -230,7 +233,9 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         DispatchQueue.main.async {
             self.scrollImageUIScroll.setZoomScale(self.scrollImageUIScroll.minimumZoomScale, animated: true)
-            self.hiddenUserInterface(isHidden: false)
+            guard self.hiddenUserInterfaceFlag == true else {
+                return self.hiddenUserInterface(isHidden: false)
+            }
         }
     }
 }

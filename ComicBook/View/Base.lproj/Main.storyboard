@@ -57,7 +57,7 @@
                                             <constraint firstAttribute="width" constant="26" id="EoK-aQ-Izp"/>
                                             <constraint firstAttribute="height" constant="26" id="kvC-pw-EyX"/>
                                         </constraints>
-                                        <state key="normal" image="Frame">
+                                        <state key="normal" image="ShareButton">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
@@ -128,7 +128,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Frame" width="17" height="20"/>
         <image name="PlayButton" width="25" height="26"/>
+        <image name="ShareButton" width="26" height="26"/>
     </resources>
 </document>

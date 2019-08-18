@@ -18,6 +18,9 @@ import AVFoundation
 
 class ComicsViewController: UIViewController, UIScrollViewDelegate {
 
+    let playButton = "PlayButton"
+    let stopButton = "StopButton"
+    let shareButton = "ShareButton"
     
     @IBOutlet weak var scrollImageUIScroll: UIScrollView!
     @IBOutlet weak var comicsImage: UIImageView!
@@ -88,7 +91,7 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func sintezButton(_ sender: Any) {
 //        startSintez()
-        playTranscriptionButton.imageView?.image == UIImage(named: "PlayButton") ? startSintez() : stopSintez()
+        playTranscriptionButton.imageView?.image == UIImage(named: playButton) ? startSintez() : stopSintez()
     }
     
     
@@ -141,7 +144,7 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func startSintez() {
-        if let image = UIImage(named: "StopButton") {
+        if let image = UIImage(named: stopButton) {
             playTranscriptionButton.setImage(image, for: .normal)
         }
         if transcription == "" {
@@ -152,7 +155,7 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func stopSintez() {
-        if let image = UIImage(named: "PlayButton") {
+        if let image = UIImage(named: playButton) {
             playTranscriptionButton.setImage(image, for: .normal)
         }
         sinthes.stopSpeaking(at: .immediate)
@@ -162,6 +165,6 @@ class ComicsViewController: UIViewController, UIScrollViewDelegate {
 
 extension ComicsViewController: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        playTranscriptionButton.setImage(UIImage(named: "PlayButton"), for: .normal)
+        playTranscriptionButton.setImage(UIImage(named: playButton), for: .normal)
     }
 }

@@ -9,5 +9,5 @@
 import Foundation
 
 enum NetworkConst {
-    static let url = "https://xkcd.com"//614/info.0.json
+    static let url = "https://xkcd.com"
 }

@@ -6,12 +6,6 @@
 //  Copyright © 2019 Pavel Murzinov. All rights reserved.
 //
 //
-//* Экран со случайным комиксом на весь экран +
-//* Возможность скроллить его и менять зум +
-//* При свайпе враво/влево – следующий/предыдущий +/+
-//* При встряхивании можно смотреть случайный комикс +
-//* Чтение комикса с помощью синтезатора речи +
-//* Можно поделиться комиксом +
 
 import UIKit
 import AVFoundation
@@ -36,9 +30,10 @@ class ComicsViewController: UIViewController {
     var arrayOfComics = [ComicsEntry]() // массив в котором хранятся данные комикса
     var counterComics: Int = 0
     
-    let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-    
-    var hiddenUserInterfaceFlag = false
+    var isHiddenUserInterface = false
+    override var prefersStatusBarHidden: Bool {
+        return isHiddenUserInterface
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +45,6 @@ class ComicsViewController: UIViewController {
         }
         
         configureScrollAndImageView()
-        
-        statusBar.isHidden = false
-        statusBar.backgroundColor = .black
     }
 
     func configureScrollAndImageView() {
@@ -62,10 +54,6 @@ class ComicsViewController: UIViewController {
         scrollImageUIScroll.delegate = self
         scrollImageUIScroll.minimumZoomScale = 1.0
         scrollImageUIScroll.maximumZoomScale = 3.0
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return comicsImage
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -87,7 +75,7 @@ class ComicsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.comicsImage.loadImage(by: comics.img)
               
-                self.progressHUD(HUD: HUD, textLable: "Success", dismissTimer: 2.0, indicator: "success")
+                self.progressHUD(HUD: HUD, textLable: "Success", dismissTimer: 1.0, indicator: "success")
             }
             
             self.transcription = comics.transcript
@@ -96,7 +84,7 @@ class ComicsViewController: UIViewController {
                 self.comicsImage.image = UIImage(named: "DefaultImage")
                 self.transcription = "No connection to server. Chech internet connection"
                 
-                self.progressHUD(HUD: HUD, textLable: "Error", dismissTimer: 2.0, indicator: "error")
+                self.progressHUD(HUD: HUD, textLable: "Error", dismissTimer: 1.0, indicator: "error")
             }
 
             print("Error with loading data: \(error)")
@@ -122,16 +110,6 @@ class ComicsViewController: UIViewController {
             }
         }
     }
-  
-    @IBAction func shareImageButton(_ sender: Any) {
-        guard let image = comicsImage.image else {
-            return
-        }
-        
-        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        
-        present(activityController, animated: true)
-    }
     
     @IBAction func leftSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
         if sender.state == .ended {
@@ -150,38 +128,52 @@ class ComicsViewController: UIViewController {
         comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img)
     }
     
+    @IBAction func shareImageButton(_ sender: Any) {
+        guard let image = comicsImage.image else {
+            return
+        }
+        
+        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        present(activityController, animated: true)
+    }
+    
     @IBAction func tapTap(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
-            hiddenUserInterfaceFlag = !hiddenUserInterfaceFlag
-            hiddenUserInterface(isHidden: !bottomBar.isHidden)
+            hiddenUserInterface(isHidden: !isHiddenUserInterface)
         }
     }
     
+    //MARK: - UI func (hidden or show)
     func hiddenUserInterface(isHidden: Bool) {
-        isHidden == true ? showUI() : hiddenUI(isHidden: isHidden)
+        isHiddenUserInterface = isHidden
+        if isHidden == false {
+            showUI()
+        } else {
+            hiddenUI()
+        }
     }
     
-    func hiddenUI(isHidden: Bool) {
-        bottomBar.alpha = 0
-        statusBar.alpha = 0
-        UIView.animate(withDuration: 0.3) {
-            self.bottomBar.alpha = 1
-            self.statusBar.alpha = 1
-        }
-        bottomBar.isHidden = isHidden
-        statusBar.isHidden = isHidden
+    func hiddenUI() {
+        bottomBar.alpha = 1
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomBar.alpha = 0
+            self.setNeedsStatusBarAppearanceUpdate()
+        }, completion: { _ in
+            self.bottomBar.isHidden = true
+        })
     }
     
     func showUI() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.bottomBar.alpha = 0
-            self.statusBar.alpha = 0
-        }) { (finished) in
-            self.bottomBar.isHidden = finished
-            self.statusBar.isHidden = finished
+        bottomBar.alpha = 0
+        bottomBar.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            self.bottomBar.alpha = 1
+            self.setNeedsStatusBarAppearanceUpdate()
         }
     }
     
+    // MARK: - Sintez Func
     func startSintez() {
         if let image = UIImage(named: stopButton) {
             playTranscriptionButton.setImage(image, for: .normal)
@@ -200,6 +192,7 @@ class ComicsViewController: UIViewController {
         sinthes.stopSpeaking(at: .immediate)
     }
     
+    //MARK: - ProgressHUD
     func progressHUD(HUD: JGProgressHUD, textLable: String, dismissTimer: TimeInterval?, indicator: String?) {
         HUD.textLabel.text = textLable
         
@@ -221,21 +214,15 @@ class ComicsViewController: UIViewController {
     
 }
 
+//MARK: - Extension
 extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         playTranscriptionButton.setImage(UIImage(named: playButton), for: .normal)
     }
     
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        hiddenUserInterface(isHidden: true)
-    }
-    
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         DispatchQueue.main.async {
-            self.scrollImageUIScroll.setZoomScale(self.scrollImageUIScroll.minimumZoomScale, animated: true)
-            guard self.hiddenUserInterfaceFlag == true else {
-                return self.hiddenUserInterface(isHidden: false)
-            }
+            self.hiddenUserInterface(isHidden: true)
         }
     }
 }

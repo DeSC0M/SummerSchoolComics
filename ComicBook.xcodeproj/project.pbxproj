@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -156,7 +156,6 @@
 				2A8751BEA0559773A98FFAA2 /* Pods-ComicBook.debug.xcconfig */,
 				CDC05CDAEA7788E39BFC1D5A /* Pods-ComicBook.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -436,7 +435,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmurzinov.ComicBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmurzinov.ComicBook1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -456,7 +455,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmurzinov.ComicBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmurzinov.ComicBook1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

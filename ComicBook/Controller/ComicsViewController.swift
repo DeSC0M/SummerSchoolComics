@@ -54,6 +54,7 @@ class ComicsViewController: UIViewController {
         scrollImageUIScroll.delegate = self
         scrollImageUIScroll.minimumZoomScale = 1.0
         scrollImageUIScroll.maximumZoomScale = 3.0
+        scrollImageUIScroll.isPagingEnabled = true
         
         comicsImage.isHidden = true
     }
@@ -100,7 +101,13 @@ class ComicsViewController: UIViewController {
             print("Error with loading data: \(error)")
         })
         group.notify(queue: .main) {
-            self.scrollImageUIScroll.addSubview(UIImageView(image: self.comicsImage.image))
+            let count = self.arrayOfComics.count
+            let boundsSize = self.scrollImageUIScroll.bounds
+            self.scrollImageUIScroll.contentSize = CGSize(width: boundsSize.width * CGFloat(count), height: boundsSize.height)
+            let image = UIImageView(image: self.comicsImage.image)
+            image.frame = CGRect(x: boundsSize.width * CGFloat(count - 1), y: 0, width: boundsSize.width, height: boundsSize.height)
+            image.contentMode = .scaleAspectFit
+            self.scrollImageUIScroll.addSubview(image)
         }
     }
     
@@ -247,6 +254,6 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
 //        return comicsImage
-        return scrollView.subviews[0]
+        return scrollView.subviews.last
     }
 }

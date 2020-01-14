@@ -54,6 +54,8 @@ class ComicsViewController: UIViewController {
         scrollImageUIScroll.delegate = self
         scrollImageUIScroll.minimumZoomScale = 1.0
         scrollImageUIScroll.maximumZoomScale = 3.0
+        
+        comicsImage.isHidden = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -66,6 +68,9 @@ class ComicsViewController: UIViewController {
         progressHUD(HUD: HUD, textLable: "Loading", dismissTimer: nil, indicator: nil)
         
         sinthes.stopSpeaking(at: .immediate)
+        
+        let group = DispatchGroup()
+        group.enter()
         let comics = BaseServices()
         comics.getPhotos(onComplited: { comics in
             
@@ -73,7 +78,12 @@ class ComicsViewController: UIViewController {
             self.counterComics = self.arrayOfComics.count
             
             DispatchQueue.main.async {
-                self.comicsImage.loadImage(by: comics.img)
+                self.comicsImage.loadImage(by: comics.img, in: group)
+                if let image = self.comicsImage {
+                    self.scrollImageUIScroll.addSubview(image)
+                } else {
+                    print("Can't get image")
+                }
                 
                 self.progressHUD(HUD: HUD, textLable: "Success", dismissTimer: 1.0, indicator: "success")
             }
@@ -89,6 +99,9 @@ class ComicsViewController: UIViewController {
 
             print("Error with loading data: \(error)")
         })
+        group.notify(queue: .main) {
+            self.scrollImageUIScroll.addSubview(UIImageView(image: self.comicsImage.image))
+        }
     }
     
     
@@ -105,7 +118,10 @@ class ComicsViewController: UIViewController {
                 sinthes.stopSpeaking(at: .immediate)
                 
                 transcription = arrayOfComics[counterComics].transcript
-                comicsImage.loadImage(by: arrayOfComics[counterComics].img)
+                
+                let group = DispatchGroup()
+                group.enter()
+                comicsImage.loadImage(by: arrayOfComics[counterComics].img, in: group)
                 counterComics += 1
             }
         }
@@ -125,7 +141,10 @@ class ComicsViewController: UIViewController {
         sinthes.stopSpeaking(at: .immediate)
         counterComics -= 1
         transcription = arrayOfComics[nomberOfComics].transcript
-        comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img)
+        
+        let group = DispatchGroup()
+        group.enter()
+        comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img, in: group)
     }
     
     @IBAction func shareImageButton(_ sender: Any) {
@@ -227,6 +246,7 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return comicsImage
+//        return comicsImage
+        return scrollView.subviews[0]
     }
 }

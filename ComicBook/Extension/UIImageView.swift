@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIImageView {
-    func loadImage(by urlImage: String) {
+    func loadImage(by urlImage: String, in group: DispatchGroup) {
 
         let cache = URLCache.shared
         
@@ -23,6 +23,7 @@ extension UIImageView {
             // данные есть на диске
             DispatchQueue.main.async {
                 self.image = UIImage(data: data)
+                group.leave()
             }
         } else {
             // данных нет на диске
@@ -40,6 +41,7 @@ extension UIImageView {
                     cache.storeCachedResponse(cacheData, for: request)
                     DispatchQueue.main.async { //async
                         self.image = UIImage(data: data)
+                        group.leave()
                     }
                 }
             }.resume()

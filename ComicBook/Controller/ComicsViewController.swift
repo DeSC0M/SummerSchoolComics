@@ -74,7 +74,7 @@ class ComicsViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.comicsImage.loadImage(by: comics.img)
-              
+                
                 self.progressHUD(HUD: HUD, textLable: "Success", dismissTimer: 1.0, indicator: "success")
             }
             
@@ -224,5 +224,9 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
         DispatchQueue.main.async {
             self.hiddenUserInterface(isHidden: true)
         }
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return comicsImage
     }
 }

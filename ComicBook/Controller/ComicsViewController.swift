@@ -18,7 +18,7 @@ class ComicsViewController: UIViewController {
     let shareButton = "ShareButton"
     
     @IBOutlet weak var scrollImageUIScroll: UIScrollView!
-    @IBOutlet weak var comicsImage: UIImageView!
+    var comicsImage = UIImageView()
     @IBOutlet weak var shakeView: ShakeView!
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var playTranscriptionButton: UIButton!
@@ -55,8 +55,6 @@ class ComicsViewController: UIViewController {
         
         scrollImageUIScroll.delegate = self
         scrollImageUIScroll.isPagingEnabled = true
-        
-        comicsImage.isHidden = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -80,11 +78,6 @@ class ComicsViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.comicsImage.loadImage(by: comics.img, in: group)
-                if let image = self.comicsImage {
-                    self.scrollImageUIScroll.addSubview(image)
-                } else {
-                    print("Can't get image")
-                }
                 
                 self.progressHUD(HUD: HUD, textLable: "Success", dismissTimer: 1.0, indicator: "success")
             }
@@ -125,45 +118,7 @@ class ComicsViewController: UIViewController {
     @IBAction func sintezButton(_ sender: Any) {
         playTranscriptionButton.imageView?.image == UIImage(named: playButton) ? startSintez() : stopSintez()
     }
-    
-//    переделать
-    @IBAction func rightSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
-        if sender.state == .ended {
-            if counterComics == arrayOfComics.count{
-                loadData()
-            } else {
-                sinthes.stopSpeaking(at: .immediate)
-                
-                transcription = arrayOfComics[counterComics].transcript
-                
-                let group = DispatchGroup()
-                group.enter()
-                comicsImage.loadImage(by: arrayOfComics[counterComics].img, in: group)
-                counterComics += 1
-            }
-        }
-    }
-    //    переделать
-    @IBAction func leftSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
-        if sender.state == .ended {
-            loadCacheComics()
-        }
-    }
-//    переделать
-    func loadCacheComics() {
-        let nomberOfComics = counterComics - 2
-        if nomberOfComics < 0 {
-            return
-        }
-        sinthes.stopSpeaking(at: .immediate)
-        counterComics -= 1
-        transcription = arrayOfComics[nomberOfComics].transcript
-        
-        let group = DispatchGroup()
-        group.enter()
-        comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img, in: group)
-    }
-//    переделать
+
     @IBAction func shareImageButton(_ sender: Any) {
         guard let image = comicsImage.image else {
             return
@@ -261,5 +216,15 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
         if (pageNumber - CGFloat(arrayOfComics.count - 1)) > 0.1 && !isLoad {
             loadData()
         }
+        
+        if pageNumber == CGFloat(Int(pageNumber)) {
+            let comics = arrayOfComics[Int(pageNumber)]
+            
+            let group = DispatchGroup()
+            group.enter()
+            comicsImage.loadImage(by: comics.img, in: group)
+            transcription = comics.transcript
+        }
     }
+    
 }

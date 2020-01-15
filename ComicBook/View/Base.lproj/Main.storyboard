@@ -18,20 +18,6 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVO-Xj-K3S">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fW-zO-szt">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <gestureRecognizers/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerX" secondItem="gVO-Xj-K3S" secondAttribute="centerX" id="6z4-sR-ZhK"/>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="centerY" secondItem="gVO-Xj-K3S" secondAttribute="centerY" id="F1S-ho-dU7"/>
-                                    <constraint firstAttribute="bottom" secondItem="5fW-zO-szt" secondAttribute="bottom" id="P6l-9C-Ymv"/>
-                                    <constraint firstAttribute="trailing" secondItem="5fW-zO-szt" secondAttribute="trailing" id="VuI-yi-gHf"/>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="leading" secondItem="gVO-Xj-K3S" secondAttribute="leading" id="Y4O-OB-xNW"/>
-                                    <constraint firstItem="5fW-zO-szt" firstAttribute="top" secondItem="gVO-Xj-K3S" secondAttribute="top" id="ZpY-iu-gco"/>
-                                </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-zi-T7V">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
@@ -91,32 +77,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="jo4-hG-4nl" appends="YES" id="vEl-d5-QA6"/>
-                            <outletCollection property="gestureRecognizers" destination="PDa-LM-7wM" appends="YES" id="ky9-BD-LlR"/>
                             <outletCollection property="gestureRecognizers" destination="rwK-G2-bt6" appends="YES" id="j0i-UU-CQi"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="bottomBar" destination="Ilh-zi-T7V" id="VFI-vd-uVH"/>
-                        <outlet property="comicsImage" destination="5fW-zO-szt" id="ZZq-89-Tm7"/>
                         <outlet property="playTranscriptionButton" destination="QFI-1Y-KKT" id="r5L-ol-czm"/>
                         <outlet property="scrollImageUIScroll" destination="gVO-Xj-K3S" id="UKC-bu-bvb"/>
                         <outlet property="shakeView" destination="8bC-Xf-vdC" id="HcU-iO-LvB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="jo4-hG-4nl">
-                    <rectEdge key="edges" right="YES"/>
-                    <connections>
-                        <action selector="rightSwype:" destination="BYZ-38-t0r" id="xCp-AB-mtg"/>
-                    </connections>
-                </screenEdgePanGestureRecognizer>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="PDa-LM-7wM">
-                    <rectEdge key="edges" left="YES"/>
-                    <connections>
-                        <action selector="leftSwype:" destination="BYZ-38-t0r" id="MYg-2Q-v3x"/>
-                    </connections>
-                </screenEdgePanGestureRecognizer>
                 <tapGestureRecognizer id="rwK-G2-bt6">
                     <connections>
                         <action selector="tapTap:" destination="BYZ-38-t0r" id="xrR-Jz-dMS"/>

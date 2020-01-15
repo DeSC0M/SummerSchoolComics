@@ -51,7 +51,7 @@ class ComicsViewController: UIViewController {
         comicsImage.contentMode = .scaleAspectFit
         loadData()
         
-//        scrollImageUIScroll.delegate = self
+        scrollImageUIScroll.delegate = self
         scrollImageUIScroll.isPagingEnabled = true
         
         comicsImage.isHidden = true
@@ -114,7 +114,6 @@ class ComicsViewController: UIViewController {
             pageView.set(image: image)
             
             self.scrollImageUIScroll.addSubview(pageView)
-            print("+")
         }
     }
     
@@ -251,5 +250,9 @@ class ComicsViewController: UIViewController {
 extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         playTranscriptionButton.setImage(UIImage(named: playButton), for: .normal)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }

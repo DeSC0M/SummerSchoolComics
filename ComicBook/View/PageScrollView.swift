@@ -44,10 +44,9 @@ class PageScrollView: UIScrollView, UIScrollViewDelegate{
         
         let xScale = boundsSize.width / imageSize.width
         let yScale = boundsSize.height  / imageSize.height
-        let minScale = min(xScale, yScale)
         
-        self.minimumZoomScale = minScale
-        self.maximumZoomScale = minScale * 1.5
+        self.minimumZoomScale = min(xScale, yScale)
+        self.maximumZoomScale = max(xScale, yScale)
     }
     
     override func layoutSubviews() {

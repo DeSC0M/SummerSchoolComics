@@ -35,6 +35,8 @@ class ComicsViewController: UIViewController {
         return isHiddenUserInterface
     }
     
+    var isLoad = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +64,7 @@ class ComicsViewController: UIViewController {
     }
     
     func loadData() {
-        
+        isLoad = true
         let HUD = JGProgressHUD(style: .dark)
         progressHUD(HUD: HUD, textLable: "Loading", dismissTimer: nil, indicator: nil)
         
@@ -98,6 +100,7 @@ class ComicsViewController: UIViewController {
 
             print("Error with loading data: \(error)")
         })
+        
         group.notify(queue: .main) {
             guard let image = self.comicsImage.image else {
                 print("\tCan't get image from comicsImage. ")
@@ -107,13 +110,14 @@ class ComicsViewController: UIViewController {
             let count = self.arrayOfComics.count
             let boundsSize = self.scrollImageUIScroll.bounds
             
-            self.scrollImageUIScroll.contentSize = CGSize(width: boundsSize.width * CGFloat(count), height: boundsSize.height)
+            self.scrollImageUIScroll.contentSize = CGSize(width: boundsSize.width * CGFloat(count + 1), height: boundsSize.height)
             
             let rect = CGRect(x: boundsSize.width * CGFloat(count - 1), y: 0, width: boundsSize.width, height: boundsSize.height)
             let pageView = PageScrollView(frame: rect)
             pageView.set(image: image)
             
             self.scrollImageUIScroll.addSubview(pageView)
+            self.isLoad = false
         }
     }
     
@@ -122,7 +126,7 @@ class ComicsViewController: UIViewController {
         playTranscriptionButton.imageView?.image == UIImage(named: playButton) ? startSintez() : stopSintez()
     }
     
-    
+//    переделать
     @IBAction func rightSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
         if sender.state == .ended {
             if counterComics == arrayOfComics.count{
@@ -139,13 +143,13 @@ class ComicsViewController: UIViewController {
             }
         }
     }
-    
+    //    переделать
     @IBAction func leftSwype(_ sender: UIScreenEdgePanGestureRecognizer) {
         if sender.state == .ended {
             loadCacheComics()
         }
     }
-    
+//    переделать
     func loadCacheComics() {
         let nomberOfComics = counterComics - 2
         if nomberOfComics < 0 {
@@ -159,7 +163,7 @@ class ComicsViewController: UIViewController {
         group.enter()
         comicsImage.loadImage(by: arrayOfComics[nomberOfComics].img, in: group)
     }
-    
+//    переделать
     @IBAction func shareImageButton(_ sender: Any) {
         guard let image = comicsImage.image else {
             return
@@ -253,6 +257,9 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x / scrollView.frame.size.width)
+        let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
+        if (pageNumber - CGFloat(arrayOfComics.count - 1)) > 0.1 && !isLoad {
+            loadData()
+        }
     }
 }

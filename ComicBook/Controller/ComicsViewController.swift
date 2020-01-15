@@ -36,6 +36,7 @@ class ComicsViewController: UIViewController {
     }
     
     var isLoad = false
+    var isRotateScrollView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +69,7 @@ class ComicsViewController: UIViewController {
     }
     
     func resizeScrollView() {
+        isRotateScrollView = true
         let comicsCount = arrayOfComics.count
         let subviewOfScrollView = scrollImageUIScroll.subviews.compactMap { $0 as? PageScrollView }
         let boundsSize = self.view.bounds.size
@@ -82,6 +84,7 @@ class ComicsViewController: UIViewController {
         }
         
         scrollImageUIScroll.contentOffset.x = CGFloat(currentPage) * boundsSize.width
+        isRotateScrollView = false
         
     }
     
@@ -237,11 +240,12 @@ extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegat
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
-        if (pageNumber - CGFloat(arrayOfComics.count - 1)) > 0.1 && !isLoad {
+        if (pageNumber - CGFloat(arrayOfComics.count - 1)) > 0.1 && !isLoad && !isRotateScrollView{
             loadData()
         }
         
-        if pageNumber == CGFloat(Int(pageNumber)) {
+        if pageNumber == CGFloat(Int(pageNumber)) &&
+            Int(pageNumber) <= (arrayOfComics.count - 1) {
             let comics = arrayOfComics[Int(pageNumber)]
             
             let group = DispatchGroup()

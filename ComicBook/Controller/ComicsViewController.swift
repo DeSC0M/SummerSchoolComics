@@ -48,6 +48,12 @@ class ComicsViewController: UIViewController {
         
         configureScrollAndImageView()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        resizeScrollView()
+    }
 
     func configureScrollAndImageView() {
         comicsImage.contentMode = .scaleAspectFit
@@ -59,6 +65,24 @@ class ComicsViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func resizeScrollView() {
+        let comicsCount = arrayOfComics.count
+        let subviewOfScrollView = scrollImageUIScroll.subviews.compactMap { $0 as? PageScrollView }
+        let boundsSize = self.view.bounds.size
+        let currentPage = Int(scrollImageUIScroll.contentOffset.x / scrollImageUIScroll.frame.width)
+        
+        scrollImageUIScroll.contentSize = CGSize(width: boundsSize.width * CGFloat(comicsCount + 1), height: boundsSize.height)
+        
+        for (i, scrollView) in subviewOfScrollView.enumerated() {
+            scrollView.frame = CGRect(x: boundsSize.width * CGFloat(i), y: 0, width: boundsSize.width, height: boundsSize.height)
+            scrollView.setCurrentMaxAndMinScale()
+            scrollView.zoomScale = scrollView.minimumZoomScale
+        }
+        
+        scrollImageUIScroll.contentOffset.x = CGFloat(currentPage) * boundsSize.width
+        
     }
     
     func loadData() {

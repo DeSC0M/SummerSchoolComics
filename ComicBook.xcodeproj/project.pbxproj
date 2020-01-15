@@ -17,6 +17,7 @@
 		060BDEC1230344080085A2D6 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC0230344080085A2D6 /* NetworkConst.swift */; };
 		060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC2230346A70085A2D6 /* UIImageView.swift */; };
 		060BDEC623034C8A0085A2D6 /* ShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060BDEC523034C8A0085A2D6 /* ShakeView.swift */; };
+		0658B9D723CF1A1F00F121B1 /* PageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0658B9D623CF1A1F00F121B1 /* PageScrollView.swift */; };
 		3DC23F3143CDB31A96125D2C /* Pods_ComicBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D18E9E71BE45D43D246B5CFB /* Pods_ComicBook.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		060BDEC0230344080085A2D6 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
 		060BDEC2230346A70085A2D6 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		060BDEC523034C8A0085A2D6 /* ShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
+		0658B9D623CF1A1F00F121B1 /* PageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageScrollView.swift; sourceTree = "<group>"; };
 		2A8751BEA0559773A98FFAA2 /* Pods-ComicBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicBook.debug.xcconfig"; path = "Target Support Files/Pods-ComicBook/Pods-ComicBook.debug.xcconfig"; sourceTree = "<group>"; };
 		CDC05CDAEA7788E39BFC1D5A /* Pods-ComicBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicBook.release.xcconfig"; path = "Target Support Files/Pods-ComicBook/Pods-ComicBook.release.xcconfig"; sourceTree = "<group>"; };
 		D18E9E71BE45D43D246B5CFB /* Pods_ComicBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComicBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,8 @@
 		060BDEB5230338E50085A2D6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				060BDEC523034C8A0085A2D6 /* ShakeView.swift */,
+				0658B9D623CF1A1F00F121B1 /* PageScrollView.swift */,
 				060BDEA62303368B0085A2D6 /* Main.storyboard */,
 			);
 			path = View;
@@ -103,7 +107,6 @@
 			children = (
 				060BDEBC230343050085A2D6 /* Services */,
 				060BDEA42303368B0085A2D6 /* ComicsViewController.swift */,
-				060BDEC523034C8A0085A2D6 /* ShakeView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				060BDEC623034C8A0085A2D6 /* ShakeView.swift in Sources */,
 				060BDEC3230346A70085A2D6 /* UIImageView.swift in Sources */,
 				060BDEBB230342820085A2D6 /* ComicsEntry.swift in Sources */,
+				0658B9D723CF1A1F00F121B1 /* PageScrollView.swift in Sources */,
 				060BDEA32303368B0085A2D6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

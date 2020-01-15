@@ -51,9 +51,7 @@ class ComicsViewController: UIViewController {
         comicsImage.contentMode = .scaleAspectFit
         loadData()
         
-        scrollImageUIScroll.delegate = self
-        scrollImageUIScroll.minimumZoomScale = 1.0
-        scrollImageUIScroll.maximumZoomScale = 3.0
+//        scrollImageUIScroll.delegate = self
         scrollImageUIScroll.isPagingEnabled = true
         
         comicsImage.isHidden = true
@@ -101,13 +99,22 @@ class ComicsViewController: UIViewController {
             print("Error with loading data: \(error)")
         })
         group.notify(queue: .main) {
+            guard let image = self.comicsImage.image else {
+                print("\tCan't get image from comicsImage. ")
+                return
+            }
+            
             let count = self.arrayOfComics.count
             let boundsSize = self.scrollImageUIScroll.bounds
+            
             self.scrollImageUIScroll.contentSize = CGSize(width: boundsSize.width * CGFloat(count), height: boundsSize.height)
-            let image = UIImageView(image: self.comicsImage.image)
-            image.frame = CGRect(x: boundsSize.width * CGFloat(count - 1), y: 0, width: boundsSize.width, height: boundsSize.height)
-            image.contentMode = .scaleAspectFit
-            self.scrollImageUIScroll.addSubview(image)
+            
+            let rect = CGRect(x: boundsSize.width * CGFloat(count - 1), y: 0, width: boundsSize.width, height: boundsSize.height)
+            let pageView = PageScrollView(frame: rect)
+            pageView.set(image: image)
+            
+            self.scrollImageUIScroll.addSubview(pageView)
+            print("+")
         }
     }
     
@@ -244,16 +251,5 @@ class ComicsViewController: UIViewController {
 extension ComicsViewController: AVSpeechSynthesizerDelegate, UIScrollViewDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         playTranscriptionButton.setImage(UIImage(named: playButton), for: .normal)
-    }
-    
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        DispatchQueue.main.async {
-            self.hiddenUserInterface(isHidden: true)
-        }
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-//        return comicsImage
-        return scrollView.subviews.last
     }
 }
